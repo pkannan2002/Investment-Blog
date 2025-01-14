@@ -22,7 +22,7 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
             <img
-              src="/photo"
+              src="/photo.jpg"
               alt=""
               className="w-48 h-48 rounded-full border-4 border-white shadow-lg transform hover:scale-105 transition-transform duration-300"
             />
