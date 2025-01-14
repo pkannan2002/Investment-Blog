@@ -1,12 +1,11 @@
-import React, { useRef } from 'react';
-import { Building2, Phone, Mail, ArrowRight, TrendingUp, Shield, Map } from 'lucide-react';
-// import Testimonials from './components/Testimonials';
+import React, { useRef, useState } from 'react';
+import { Phone, Mail, TrendingUp, Shield, Map } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import Background3D from './components/Background3D';
 
 function App() {
-  const contactRef = useRef<HTMLElement | null>(null); // Explicitly specify the type
-
+  const contactRef = useRef<HTMLElement | null>(null);
+  const [imageStatus, setImageStatus] = useState('');
 
   const scrollToContact = () => {
     if (contactRef.current) {
@@ -16,15 +15,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* Hero Banner */}
       <header className="relative bg-blue-900 text-white">
         <Background3D />
         <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
             <img
-              src="/photo.jpg"
+              src="/photo_2025-01-12_15-01-20.jpg"
               alt=""
               className="w-48 h-48 rounded-full border-4 border-white shadow-lg transform hover:scale-105 transition-transform duration-300"
+              onLoad={() => setImageStatus('Image is available and loaded successfully!')}
+              onError={() => setImageStatus('Image is not available!')}
             />
             <div>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-center md:text-left">
@@ -45,11 +45,15 @@ function App() {
                   <Phone className="ml-2 h-5 w-5" />
                 </button>
               </div>
+              <div className="mt-4 text-center md:text-left">
+                <p style={{ color: imageStatus.includes('not') ? 'red' : 'green' }}>{imageStatus}</p>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
+      {/* The rest of your sections */}
       {/* Blog Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,9 +118,6 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials */}
-      {/* <Testimonials /> */}
 
       {/* Contact Section */}
       <section ref={contactRef} className="bg-blue-900 text-white py-20">
